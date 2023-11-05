@@ -31,6 +31,7 @@ that it everything if you any issue go ask for help in the htttps://ps4linux.com
 
 
 special thanks to [marcan](https://github.com/marcan)- without him then linux will not be posable for the ps4
+
 special thanks to [Noob404](https://github.com/noob404yt) - for contirb to ps4linux
 
 special thanks to [zerbuu](https://ps4linux.com/forums/u/zerobou)-without him we would not have newer mesa drivers
