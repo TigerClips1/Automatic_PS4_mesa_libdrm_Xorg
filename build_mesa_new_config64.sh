@@ -4,7 +4,7 @@ pkgname=mesa
 pkgver=23.0
 pkgver_libdrm=2.4.117
 pkgname_libdrm=libdrm
-xorg_ver=23.0.0
+xorg_ver=22.0.0
 
 echo "Ubuntu/debian please enable deb-src"
 mkdir 64-bit
@@ -118,7 +118,7 @@ meson setup build64 \
     --buildtype plain \
     --wrap-mode      nofallback \
     -D udev=false \
-    -D valgrind=false
+    -D valgrind=disabled \
     -D intel=true
 
 meson configure build64
