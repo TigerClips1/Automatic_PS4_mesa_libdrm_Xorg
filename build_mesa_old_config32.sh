@@ -29,6 +29,7 @@ cd mesa-ps4
 
 patch  -Np1 < ../mesa.patch
 
+sleep 10
 # Build and install the package
 meson setup  build32 \
     -D b_ndebug=true \
@@ -96,7 +97,10 @@ mv drm-libdrm-$pkgver_libdrm libdrm
 
 cd libdrm 
 
+
 patch -Np1 < ../libdrm.patch
+
+sleep 10
 
 meson setup build32 \
     --prefix /usr \

@@ -31,6 +31,7 @@ echo "if the patch feil then see the 2 errors and go to the dir it show the erro
 echo "now the patch command will run again  don't worry about it the patches are there onece you add it in the first error "
 patch  -Np1 < ../../mesa.patch
 
+sleep 10
 # Build and install the package
 meson setup  build32 \
     -D b_ndebug=true \
@@ -93,6 +94,7 @@ cd libdrm
 
 patch -Np1 < ../libdrm.patch
 
+sleep 10
 meson setup build32 \
     --prefix /usr \
     --libdir i386 \

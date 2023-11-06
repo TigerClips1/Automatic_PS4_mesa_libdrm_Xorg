@@ -52,6 +52,8 @@ cd mesa-ps4
 
 patch  -Np1 < ../../mesa.patch
 
+sleep 10
+
 # Build and install the package
 meson setup  build64 \
     -D b_ndebug=true \
@@ -108,6 +110,8 @@ cd libdrm
 
 patch -Np1 < ../libdrm.patch
 
+sleep 10
+
 meson setup build64 \
     --prefix /usr \
     --libdir x86_64 \
@@ -134,6 +138,8 @@ mv xf86-video-amdgpu-xf86-video-amdgpu-23.0.0 xorg-ps4
 cd xorg-ps4
 
 patch -Np1 < ../xf86-video-amdgpu.patch
+
+sleep 10
 
 echo "export CFLAGS=${CFLAGS/-fno-plt}
       export CXXFLAGS=${CXXFLAGS/-fno-plt}
