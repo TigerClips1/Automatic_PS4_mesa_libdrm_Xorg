@@ -74,12 +74,12 @@ ninja $NINJAFLAGS -C build32
 sudo ninja $NINJAFLAGS -C build32  install
 
 # remove files provided by mesa-git
-rm -rf "$pkgdir"/etc
-rm -rf "$pkgdir"/usr/include
-rm -rf "$pkgdir"/usr/share/glvnd/
-rm -rf "$pkgdir"/usr/share/drirc.d/
-rm -rf "$pkgdir"/usr/share/vulkan/explicit_layer.d/
-rm -rf "$pkgdir"/usr/share/vulkan/implicit_layer.d/VkLayer_MESA_device_select.json
+sudo rm -rf "$pkgdir"/etc
+sudo rm -rf "$pkgdir"/usr/include
+sudo rm -rf "$pkgdir"/usr/share/glvnd/
+sudo rm -rf "$pkgdir"/usr/share/drirc.d/
+sudo rm -rf "$pkgdir"/usr/share/vulkan/explicit_layer.d/
+sudo rm -rf "$pkgdir"/usr/share/vulkan/implicit_layer.d/VkLayer_MESA_device_select.json
 
 # remove script file from /usr/bin
 # https://gitlab.freedesktop.org/mesa/mesa/issues/2230
@@ -119,9 +119,18 @@ meson test -C build32 -t 10
 
 sudo ninja -C build32 install
 
-rm -rf "$pkgdir"/usr/{include,share,bin}
+sudo rm -rf "$pkgdir"/usr/{include,share,bin}
 
 echo "Script By TigerClips1"
 
+cd ../..
+read -p "Do you want to 32-bit-old folder? (Y/N) " answer
+if [[ $answer == "Y" ]]; then
+  echo "Deleteing, 32-bit-old make sure you install everything right and fix the patch error you see for mesa libdrm"
+  rm -rf 32-bit-old
+else
+  exit 1
+fi
+ 
 
 exit

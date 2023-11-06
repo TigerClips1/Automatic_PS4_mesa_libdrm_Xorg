@@ -96,9 +96,9 @@ meson setup  build64 \
 meson configure build64
 ninja $NINJAFLAGS -C build64 
 sudo ninja $NINJAFLAGS -C build64  install
-rm "${pkgdir}/usr/bin/mesa-overlay-control.py"
-rmdir "${pkgdir}/usr/bin"
-ln -s /usr/x86_64/libGLX_mesa.so.0 "${pkgdir}/usr/x86_64/libGLX_indirect.so.0"
+sudo rm "${pkgdir}/usr/bin/mesa-overlay-control.py"
+sudo rmdir "${pkgdir}/usr/bin"
+sudo ln -s /usr/x86_64/libGLX_mesa.so.0 "${pkgdir}/usr/x86_64/libGLX_indirect.so.0"
 cd ..
 mv drm-libdrm-$pkgver_libdrm.tar.gz libdrm-ps4.tar.gz
 
@@ -156,7 +156,18 @@ source ~/.bashrc
 
 make check
 
+sudo make install
+
 echo "Script By TigerClips1"
+
+cd ../..
+read -p "Do you want to Delete 64-bit folder? (Y/N) " answer
+if [[ $answer == "Y" ]]; then
+  echo "Deleteing, 64-bit make sure you install everything right and fix the patch error you see for mesa libdrm"
+  rm -rf 64-bit
+else
+  exit 1
+fi
 
 echo "Please run bulid_mesa_new_config32.sh on a 32bit debian distro in a vm"
 
