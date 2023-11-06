@@ -8,7 +8,6 @@ pkgname_libdrm=libdrm
 echo "debian please enable deb-src"
 
 echo "Plese use a 32bit os for exmple debian it has be an debian base distro not ubuntu ubuntu no longer buliding 32bit version don't use fedora that code remove"
-rm -rf 32-bit
 mkdir 32-bit
 cd 32-bit
 
@@ -71,9 +70,9 @@ meson setup  build32 \
     -D microsoft-clc=disabled \
 
 #configue and install mesa for the ps4 in the /usr/x86_64 folder or path
-meson configure bulid32
-ninja $NINJAFLAGS -C bulid32 
-sudo ninja $NINJAFLAGS -C bulid32  install
+meson configure build32
+ninja $NINJAFLAGS -C build32 
+sudo ninja $NINJAFLAGS -C build32  install
 rm -rf "$pkgdir"/etc
 rm -rf "$pkgdir"/usr/include
 rm -rf "$pkgdir"/usr/share/glvnd/
@@ -103,7 +102,7 @@ meson setup build32 \
     -D valgrind=false
     -D intel=true
 
-meson configure bulid32
+meson configure build32
 
 ninja -C build32
 

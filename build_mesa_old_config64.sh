@@ -92,12 +92,12 @@ meson setup  build64 \
     -D microsoft-clc=disabled \
 
 #configue and install mesa for the ps4 in the /usr/x86_64 folder or path
-meson configure bulid64
-ninja $NINJAFLAGS -C bulid64 
-sudo ninja $NINJAFLAGS -C bulid64  install
+meson configure build64
+ninja $NINJAFLAGS -C build64 
+sudo ninja $NINJAFLAGS -C build64  install
 rm "${pkgdir}/usr/bin/mesa-overlay-control.py"
 rmdir "${pkgdir}/usr/bin"
-ln -s /usr/lib/x86_64/libGLX_mesa.so.0 "${pkgdir}/usr/lib/x86_64/libGLX_indirect.so.0"
+ln -s /usr/x86_64/libGLX_mesa.so.0 "${pkgdir}/usr/x86_64/libGLX_indirect.so.0"
 cd ..
 mv drm-libdrm-$pkgver_libdrm.tar.gz libdrm-ps4.tar.gz
 
@@ -118,7 +118,7 @@ meson setup build64 \
     -D valgrind=false
     -D intel=true
 
-meson configure bulid64
+meson configure build64
 
 ninja -C build64
 

@@ -6,36 +6,15 @@ pkgver_libdrm=2.4.117
 pkgname_libdrm=libdrm
 
 echo "Ubuntu/debian please enable deb-src"
-mkdir 64-bit-old
-cd 64-bit-old
+mkdir 32-bit-old
+cd 32-bit-old
 
-rm -rf bulid64
-
+rm -rf bulid32
+#make sure to use a debian 32bit base distro
 # Install build dependencies
-# Check if the system uses DNF (Fedora) or APT (Debian/Ubuntu)
-if command -v dnf &> /dev/null; then
-    # Use DNF for Fedora
-    if [ -n "$(sudo dnf 2>&1 | grep 'apt-get')" ]; then
-        echo "Fedora is detected, but you have APT installed. Please install DNF and run the script again."
-        exit 1
-    fi
-    echo "this not all of xorg build dep there still need to be install i will update this once i find it"
-    sudo dnf update
-    sudo dnf install curl wget
-    sudo dnf builddep -y $pkgname $pkgname_libdrm xorg-x11-server
-elif command -v apt-get &> /dev/null; then
-    # Use APT for Debian/Ubuntu
-    if [ -n "$(sudo apt-get 2>&1 | grep 'dnf')" ]; then
-        echo "Debian/Ubuntu is detected, but you have DNF installed. Please install APT and run the script again."
-        exit 1
-    fi
-    sudo apt update
-    sudo apt-get build-dep -y $pkgname $pkgname_libdrm xserver-xorg-core 
-    sudo apt-get install wget curl
-else
-    echo "Unsupported package manager. Please install either DNF or APT and run the script again."
-    exit 1
-fi
+sudo apt update
+sudo apt-get build-dep -y $pkgname $pkgname_libdrm xserver-xorg-core 
+sudo apt-get install wget curl
 
 # Download the source files
 curl -O "https://gitlab.freedesktop.org/mesa/mesa/-/archive/$pkgver/mesa-$pkgver.tar.gz"
@@ -89,9 +68,9 @@ meson setup  build32 \
     -D microsoft-clc=disabled \
 
 #configue and install mesa for the ps4 in the /usr/x86_64 folder or path
-meson configure bulid32
-ninja $NINJAFLAGS -C bulid32
-sudo ninja $NINJAFLAGS -C bulid32  install
+meson configure build32
+ninja $NINJAFLAGS -C build32
+sudo ninja $NINJAFLAGS -C build32  install
 
 # remove files provided by mesa-git
 rm -rf "$pkgdir"/etc
@@ -106,7 +85,7 @@ rm -rf "$pkgdir"/usr/share/vulkan/implicit_layer.d/VkLayer_MESA_device_select.js
 rm "${pkgdir}/usr/bin/mesa-overlay-control.py"
 rmdir "${pkgdir}/usr/bin"
 
-ln -s /usr/lib32/libGLX_mesa.so.0 "${pkgdir}/usr/lib32/libGLX_indirect.so.0"
+ln -s /usr/i386/libGLX_mesa.so.0 "${pkgdir}/usr/i386/libGLX_indirect.so.0"
 
 cd ..
 mv drm-libdrm-$pkgver_libdrm.tar.gz libdrm-ps4.tar.gz
@@ -128,7 +107,7 @@ meson setup build32 \
     -D valgrind=false
     -D intel=true
 
-meson configure bulid32
+meson configure build32s
 
 ninja -C build32
 
