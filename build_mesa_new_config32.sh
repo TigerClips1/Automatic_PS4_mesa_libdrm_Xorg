@@ -74,14 +74,7 @@ meson setup  build32 \
 meson configure build32
 ninja $NINJAFLAGS -C build32 
 sudo ninja $NINJAFLAGS -C build32  install
-sudo rm -rf "$pkgdir"/etc
-sudo rm -rf "$pkgdir"/usr/include
-sudo rm -rf "$pkgdir"/usr/share/glvnd/
-sudo rm -rf "$pkgdir"/usr/share/drirc.d/
-sudo rm -rf "$pkgdir"/usr/share/vulkan/explicit_layer.d/
-sudo rm -rf "$pkgdir"/usr/share/vulkan/implicit_layer.d/VkLayer_MESA_device_select.json
 sudo rm "${pkgdir}/usr/bin/mesa-overlay-control.py"
-sudo rmdir "${pkgdir}/usr/bin"
 sudo ln -s /usr/i386/libGLX_mesa.so.0 "${pkgdir}/usr/i386/libGLX_indirect.so.0"
 cd ..
 mv drm-libdrm-$pkgver_libdrm.tar.gz libdrm-ps4.tar.gz
@@ -111,7 +104,6 @@ ninja -C build32
 meson test -C build32 -t 10
 
 sudo ninja -C build32 install
-sudo rm -rf "$pkgdir"/usr/{include,share,bin}
 
 echo "Script By TigerClips1"
 

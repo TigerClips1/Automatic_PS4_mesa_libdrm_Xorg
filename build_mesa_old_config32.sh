@@ -73,19 +73,6 @@ meson configure build32
 ninja $NINJAFLAGS -C build32
 sudo ninja $NINJAFLAGS -C build32  install
 
-# remove files provided by mesa-git
-sudo rm -rf "$pkgdir"/etc
-sudo rm -rf "$pkgdir"/usr/include
-sudo rm -rf "$pkgdir"/usr/share/glvnd/
-sudo rm -rf "$pkgdir"/usr/share/drirc.d/
-sudo rm -rf "$pkgdir"/usr/share/vulkan/explicit_layer.d/
-sudo rm -rf "$pkgdir"/usr/share/vulkan/implicit_layer.d/VkLayer_MESA_device_select.json
-
-# remove script file from /usr/bin
-# https://gitlab.freedesktop.org/mesa/mesa/issues/2230
-rm "${pkgdir}/usr/bin/mesa-overlay-control.py"
-rmdir "${pkgdir}/usr/bin"
-
 ln -s /usr/i386/libGLX_mesa.so.0 "${pkgdir}/usr/i386/libGLX_indirect.so.0"
 
 cd ..
@@ -119,7 +106,7 @@ meson test -C build32 -t 10
 
 sudo ninja -C build32 install
 
-sudo rm -rf "$pkgdir"/usr/{include,share,bin}
+
 
 echo "Script By TigerClips1"
 
