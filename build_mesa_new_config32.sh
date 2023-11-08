@@ -74,7 +74,6 @@ meson setup  build32 \
 meson configure build32
 ninja $NINJAFLAGS -C build32 
 sudo ninja $NINJAFLAGS -C build32  install
-sudo rm "${pkgdir}/usr/bin/mesa-overlay-control.py"
 sudo ln -s /usr/i386/libGLX_mesa.so.0 "${pkgdir}/usr/i386/libGLX_indirect.so.0"
 sudo ln -s /usr/i386/x86_64/libOSMesa.so.8.0.0 "${pkgdir}/usr/i386/libOSMesa.so.6"
 cd ..
