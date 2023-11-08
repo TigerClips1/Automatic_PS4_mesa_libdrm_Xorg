@@ -156,10 +156,10 @@ source ~/.bashrc
 make check
 
 sudo make install
-
-echo "Script By TigerClips1"
-
-cd ../..
+cd ../
+sudo cp -r mesa-ps4 libdrm xorg-ps4 /usr/x86_64/
+sudo tar -cvzf ps4_mesa.tar.gz /usr/x86_64/
+cd ../
 read -p "Do you want to Delete 64-bit folder? (Y/N) " answer
 if [[ $answer == "Y" ]]; then
   echo "Deleteing, 64-bit make sure you install everything right and fix the patch error you see for mesa libdrm"
@@ -169,5 +169,9 @@ else
 fi
 
 echo "Please run bulid_mesa_new_config32.sh on a 32bit debian distro in a vm"
+
+echo "Script By TigerClips1"
+
+echo "ps4linux.com"
 
 exit

@@ -75,7 +75,7 @@ meson configure build32
 ninja $NINJAFLAGS -C build32 
 sudo ninja $NINJAFLAGS -C build32  install
 sudo ln -s /usr/i386/libGLX_mesa.so.0 "${pkgdir}/usr/i386/libGLX_indirect.so.0"
-sudo ln -s /usr/i386/x86_64/libOSMesa.so.8.0.0 "${pkgdir}/usr/i386/libOSMesa.so.6"
+sudo ln -s /usr/i386/libOSMesa.so.8.0.0 "${pkgdir}/usr/i386/libOSMesa.so.6"
 cd ..
 mv drm-libdrm-$pkgver_libdrm.tar.gz libdrm-ps4.tar.gz
 
@@ -105,9 +105,10 @@ meson test -C build32 -t 10
 
 sudo ninja -C build32 install
 
-echo "Script By TigerClips1"
-
-cd ../..
+cd ../
+sudo cp -r mesa-ps4 libdrm /usr/i386/
+sudo tar -cvzf ps4_mesa.tar.gz /usr/i386/
+cd ../
 read -p "Do you want to 32-bit folder? (Y/N) " answer
 if [[ $answer == "Y" ]]; then
   echo "Deleteing, 32-bit make sure you install everything right and fix the patch error you see for mesa libdrm"
@@ -115,5 +116,9 @@ if [[ $answer == "Y" ]]; then
 else
   exit 1
 fi
+
+echo "Script By TigerClips1"
+
+echo "ps4linux.com"
 
 exit

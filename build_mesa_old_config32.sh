@@ -107,11 +107,11 @@ meson test -C build32 -t 10
 
 sudo ninja -C build32 install
 
+cd ../
+sudo cp -r mesa-ps4 libdrm /usr/i386/
+sudo tar -cvzf ps4_mesa.tar.gz /usr/i386/
 
-
-echo "Script By TigerClips1"
-
-cd ../..
+cd ../
 read -p "Do you want to 32-bit-old folder? (Y/N) " answer
 if [[ $answer == "Y" ]]; then
   echo "Deleteing, 32-bit-old make sure you install everything right and fix the patch error you see for mesa libdrm"
@@ -120,5 +120,8 @@ else
   exit 1
 fi
  
+echo "Script By TigerClips1"
+
+echo "ps4linux.com"
 
 exit
