@@ -16,7 +16,7 @@ rm -rf bulid32
 # Install build dependencies 32bit
 sudo apt-get update
 sudo apt-get install curl wget
-sudo apt-get build-dep -y $pkgname $pkgname_libdrm xserver-xorg-core
+sudo apt-get build-dep -y $pkgname $pkgname_libdrm xserver-xorg-core directx-headers-dev
 
 # Download the source files
 curl -O "https://gitlab.freedesktop.org/mesa/mesa/-/archive/$pkgver/mesa-$pkgver.tar.gz"

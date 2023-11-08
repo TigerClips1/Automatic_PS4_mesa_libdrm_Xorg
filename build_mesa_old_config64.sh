@@ -23,7 +23,7 @@ if command -v dnf &> /dev/null; then
     echo "this not all of xorg build dep there still need to be install i will update this once i find it"
     sudo dnf update
     sudo dnf install curl wget
-    sudo dnf builddep -y $pkgname $pkgname_libdrm xorg-x11-server
+    sudo dnf builddep -y $pkgname $pkgname_libdrm xorg-x11-server 
 elif command -v apt-get &> /dev/null; then
     # Use APT for Debian/Ubuntu
     if [ -n "$(sudo apt-get 2>&1 | grep 'dnf')" ]; then
@@ -31,8 +31,9 @@ elif command -v apt-get &> /dev/null; then
         exit 1
     fi
     sudo apt update
-    sudo apt-get build-dep -y $pkgname $pkgname_libdrm xserver-xorg-core 
     sudo apt-get install wget curl
+    sudo apt-get build-dep -y $pkgname $pkgname_libdrm xserver-xorg-core  directx-headers-dev
+   
 else
     echo "Unsupported package manager. Please install either DNF or APT and run the script again."
     exit 1
