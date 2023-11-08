@@ -97,7 +97,7 @@ meson setup build32 \
     --wrap-mode      nofallback \
     -D udev=false \
     -D valgrind=disabled \
-    -D intel=true
+    -D intel=enabled
 
 meson configure build32s
 

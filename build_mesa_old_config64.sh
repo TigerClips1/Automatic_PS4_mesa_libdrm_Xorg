@@ -119,7 +119,7 @@ meson setup build64 \
     --wrap-mode      nofallback \
     -D udev=false \
     -D valgrind=disabled \
-    -D intel=true
+    -D intel=enabled
 
 meson configure build64
 
