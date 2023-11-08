@@ -2,7 +2,7 @@
 
 pkgname=mesa
 pkgver=22.0
-pkgver_libdrm=2.4.117
+pkgver_libdrm=2.4.116
 pkgname_libdrm=libdrm
 xorg_ver=22.0.0
 
