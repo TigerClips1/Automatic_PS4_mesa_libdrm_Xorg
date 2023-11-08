@@ -100,7 +100,7 @@ sudo ninja $NINJAFLAGS -C build64  install
 sudo rm "${pkgdir}/usr/bin/mesa-overlay-control.py"
 sudo rmdir "${pkgdir}/usr/bin"
 sudo ln -s /usr/x86_64/libGLX_mesa.so.0 "${pkgdir}/usr/x86_64/libGLX_indirect.so.0"
-sudo ln -s /home/$USER/x86_64/libOSMesa.so.8.0.0 "${pkgdir}/home/$USER/x86_64/libOSMesa.so.6"
+sudo ln -s /usr/x86_64/libOSMesa.so.8.0.0 "${pkgdir}/usr/x86_64/libOSMesa.so.6"
 cd ..
 mv drm-libdrm-$pkgver_libdrm.tar.gz libdrm-ps4.tar.gz
 
