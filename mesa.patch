@@ -19,7 +19,7 @@ diff -Naur mesa/src/amd/addrlib/src/amdgpu_asic_addr.h mesa-patched/src/amd/addr
 @@ -74,7 +74,9 @@
  #define AMDGPU_HAWAII_RANGE     0x28, 0x3C
  
- #define AMDGPU_SPECTRE_RANGE    0x01, 0x41 //#   1 <= x < 65
+#define AMDGPU_SPECTRE_RANGE    0x01, 0x41 //#   1 <= x < 65
 -#define AMDGPU_SPOOKY_RANGE     0x41, 0x81 //#  65 <= x < 129
 +#define AMDGPU_SPOOKY_RANGE     0x41, 0x61
 +#define AMDGPU_STARSHA_RANGE    0x61, 0x71
@@ -94,6 +94,8 @@ diff -Naur mesa/src/amd/common/amd_family.h mesa-patched/src/amd/common/amd_fami
     CHIP_KAVERI,
     CHIP_KABINI,
     CHIP_HAWAII,
+    /* GFX8 (Volcanic Islands & Polaris) */
+
 diff -Naur mesa/src/amd/llvm/ac_llvm_util.c mesa-patched/src/amd/llvm/ac_llvm_util.c
 --- mesa/src/amd/llvm/ac_llvm_util.c	2022-04-22 17:15:29.000000000 +0300
 +++ mesa-patched/src/amd/llvm/ac_llvm_util.c	2022-06-21 10:15:10.665259880 +0300
