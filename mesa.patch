@@ -19,13 +19,13 @@ diff -Naur mesa/src/amd/addrlib/src/amdgpu_asic_addr.h mesa-patched/src/amd/addr
 @@ -74,7 +74,9 @@
  #define AMDGPU_HAWAII_RANGE     0x28, 0x3C
  
- #define AMDGPU_SPECTRE_RANGE    0x01, 0x41
--#define AMDGPU_SPOOKY_RANGE     0x41, 0x81
+ #define AMDGPU_SPECTRE_RANGE    0x01, 0x41 //#   1 <= x < 65
+-#define AMDGPU_SPOOKY_RANGE     0x41, 0x81 //#  65 <= x < 129
 +#define AMDGPU_SPOOKY_RANGE     0x41, 0x61
 +#define AMDGPU_STARSHA_RANGE    0x61, 0x71
 +#define AMDGPU_STARSHP_RANGE    0x71, 0x81
- #define AMDGPU_KALINDI_RANGE    0x81, 0xA1
- #define AMDGPU_GODAVARI_RANGE   0xA1, 0xFF
+ #define AMDGPU_KALINDI_RANGE    0x81, 0xA1 //# 129 <= x < 161
+ #define AMDGPU_GODAVARI_RANGE   0xA1, 0xFF //# 161 <= x < max
  
 @@ -134,6 +136,8 @@
  
@@ -87,7 +87,8 @@ diff -Naur mesa/src/amd/common/amd_family.h mesa-patched/src/amd/common/amd_fami
 @@ -85,6 +85,8 @@
     CHIP_OLAND,
     CHIP_HAINAN,
-    CHIP_BONAIRE, /* GFX7 (Sea Islands) */
+    /* GFX7 (Sea Islands) */
+    CHIP_BONAIRE, 
 +   CHIP_LIVERPOOL,
 +   CHIP_GLADIUS,
     CHIP_KAVERI,
