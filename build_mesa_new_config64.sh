@@ -151,7 +151,7 @@ source ~/.bashrc
 ./configure 
     --prefix=/home/"{$USER}" \
     --enable-glamor
-  make -j $threads
+  make -j "{$threads}"
 
 make check
 
