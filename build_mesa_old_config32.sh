@@ -5,7 +5,7 @@ pkgver=22.0
 pkgver_libdrm=2.4.116
 pkgname_libdrm=libdrm
 
-echo "Ubuntu/debian please enable deb-src"
+printf "Ubuntu/debian please enable deb-src"
 mkdir 32-bit-old
 cd 32-bit-old
 
@@ -70,8 +70,8 @@ meson setup  build32 \
 
 #configue and install mesa for the ps4 in the /usr/x86_64 folder or path
 meson configure build32
-ninja $NINJAFLAGS -C build32
-sudo ninja $NINJAFLAGS -C build32  install
+ninja "{$NINJAFLAGS}" -C build32
+sudo ninja "{$NINJAFLAGS}" -C build32  install
 
 sudo ln -s /usr/i386/libGLX_mesa.so.0 "${pkgdir}/usr/i386/libGLX_indirect.so.0"
 sudo ln -s /usr/i386/x86_64/libOSMesa.so.8.0.0 "${pkgdir}/usr/i386/libOSMesa.so.6"
@@ -114,14 +114,14 @@ sudo tar -cvzf ps4_mesa.tar.gz /usr/i386/
 cd ../
 read -p "Do you want to 32-bit-old folder? (Y/N) " answer
 if [[ $answer == "Y" ]]; then
-  echo "Deleteing, 32-bit-old make sure you install everything right and fix the patch error you see for mesa libdrm"
+  printf "Deleteing, 32-bit-old make sure you install everything right and fix the patch error you see for mesa libdrm"
   rm -rf 32-bit-old
 else
   exit 1
 fi
  
-echo "Script By TigerClips1"
+printf "Script By TigerClips1"
 
-echo "ps4linux.com"
+printf "ps4linux.com"
 
 exit

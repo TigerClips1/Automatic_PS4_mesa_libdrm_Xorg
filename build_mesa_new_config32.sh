@@ -5,9 +5,9 @@ pkgver=23.0
 pkgver_libdrm=2.4.117
 pkgname_libdrm=libdrm
 
-echo "debian please enable deb-src"
+printf "debian please enable deb-src"
 
-echo "Plese use a 32bit os for exmple debian it has be an debian base distro not ubuntu ubuntu no longer buliding 32bit version don't use fedora that code remove"
+printf "Plese use a 32bit os for exmple debian it has be an debian base distro not ubuntu ubuntu no longer buliding 32bit version don't use fedora that code remove"
 mkdir 32-bit
 cd 32-bit
 
@@ -27,8 +27,8 @@ tar -xvzf "mesa-$pkgver.tar.gz"
 mv mesa-$pkgver mesa-ps4
 
 cd mesa-ps4
-echo "if the patch feil then see the 2 errors and go to the dir it show the error and open the .patch file and add those patches in that .c file or .h file  that in the .patch file then try to setup it \n"
-echo "now the patch command will run again  don't worry about it the patches are there onece you add it in the first error "
+printf "if the patch feil then see the 2 errors and go to the dir it show the error and open the .patch file and add those patches in that .c file or .h file  that in the .patch file then try to setup it \n"
+printf "now the patch command will run again  don't worry about it the patches are there onece you add it in the first error "
 patch  -Np1 < ../../mesa.patch
 
 sleep 10
@@ -72,8 +72,8 @@ meson setup  build32 \
 
 #configue and install mesa for the ps4 in the /usr/x86_64 folder or path
 meson configure build32
-ninja $NINJAFLAGS -C build32 
-sudo ninja $NINJAFLAGS -C build32  install
+ninja "{$NINJAFLAGS}" -C build32 
+sudo ninja "{$NINJAFLAGS}" -C build32  install
 sudo ln -s /usr/i386/libGLX_mesa.so.0 "${pkgdir}/usr/i386/libGLX_indirect.so.0"
 sudo ln -s /usr/i386/libOSMesa.so.8.0.0 "${pkgdir}/usr/i386/libOSMesa.so.6"
 cd ..
@@ -111,14 +111,14 @@ sudo tar -cvzf ps4_mesa.tar.gz /usr/i386/
 cd ../
 read -p "Do you want to 32-bit folder? (Y/N) " answer
 if [[ $answer == "Y" ]]; then
-  echo "Deleteing, 32-bit make sure you install everything right and fix the patch error you see for mesa libdrm"
+  printf "Deleteing, 32-bit make sure you install everything right and fix the patch error you see for mesa libdrm"
   rm -rf 32-bit
 else
   exit 1
 fi
 
-echo "Script By TigerClips1"
+printf "Script By TigerClips1"
 
-echo "ps4linux.com"
+printf "ps4linux.com"
 
 exit

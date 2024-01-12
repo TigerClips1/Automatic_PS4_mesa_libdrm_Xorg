@@ -6,7 +6,7 @@ pkgver_libdrm=2.4.117
 pkgname_libdrm=libdrm
 xorg_ver=22.0.0
 
-echo "Ubuntu/debian please enable deb-src"
+printf "Ubuntu/debian please enable deb-src"
 mkdir 64-bit
 cd 64-bit
 
@@ -17,24 +17,24 @@ rm -rf bulid64
 if command -v dnf &> /dev/null; then
     # Use DNF for Fedora
     if [ -n "$(sudo dnf 2>&1 | grep 'apt-get')" ]; then
-        echo "Fedora is detected, but you have APT installed. Please install DNF and run the script again."
+        printf "Fedora is detected, but you have APT installed. Please install DNF and run the script again."
         exit 1
     fi
-    echo "this not all of xorg build dep there still need to be install i will update this once i find it"
+    printf "this not all of xorg build dep there still need to be install i will update this once i find it"
     sudo dnf update
     sudo dnf install curl wget
     sudo dnf builddep -y $pkgname $pkgname_libdrm xorg-x11-server 
 elif command -v apt-get &> /dev/null; then
     # Use APT for Debian/Ubuntu
     if [ -n "$(sudo apt-get 2>&1 | grep 'dnf')" ]; then
-        echo "Debian/Ubuntu is detected, but you have DNF installed. Please install APT and run the script again."
+        printf "Debian/Ubuntu is detected, but you have DNF installed. Please install APT and run the script again."
         exit 1
     fi
     sudo apt-get update
     sudo apt-get install curl wget
     sudo apt-get build-dep -y $pkgname $pkgname_libdrm xserver-xorg-core  directx-headers-dev
 else
-    echo "Unsupported package manager. Please install either DNF or APT and run the script again."
+    printf "Unsupported package manager. Please install either DNF or APT and run the script again."
     exit 1
 fi
 
@@ -94,8 +94,8 @@ meson setup  build64 \
 
 #configue and install mesa for the ps4 in the /usr/x86_64 folder or path
 meson configure build64
-ninja $NINJAFLAGS -C build64 
-sudo ninja $NINJAFLAGS -C build64  install
+ninja "{$NINJAFLAGS}" -C build64 
+sudo ninja "{$NINJAFLAGS}" -C build64  install
 sudo ln -s /usr/x86_64/libGLX_mesa.so.0 "${pkgdir}/usr/x86_64/libGLX_indirect.so.0"
 sudo ln -s /usr/x86_64/libOSMesa.so.8.0.0 "${pkgdir}/usr/x86_64/libOSMesa.so.6"
 cd ..
@@ -140,7 +140,7 @@ patch -Np1 < ../xf86-video-amdgpu.patch
 
 sleep 10
 
-echo "export CFLAGS=${CFLAGS/-fno-plt}
+printf "export CFLAGS=${CFLAGS/-fno-plt}
       export CXXFLAGS=${CXXFLAGS/-fno-plt}
       export LDFLAGS=${LDFLAGS/,-z,now}" | tee ~/.bashrc
 
@@ -149,7 +149,7 @@ source ~/.bashrc
 ./autogen.sh
 
 ./configure 
-    --prefix=/home/$USER \
+    --prefix=/home/"{$USER}" \
     --enable-glamor
   make -j $threads
 
@@ -162,16 +162,16 @@ sudo tar -cvzf ps4_mesa.tar.gz /usr/x86_64/
 cd ../
 read -p "Do you want to Delete 64-bit folder? (Y/N) " answer
 if [[ $answer == "Y" ]]; then
-  echo "Deleteing, 64-bit make sure you install everything right and fix the patch error you see for mesa libdrm"
+  printf "Deleteing, 64-bit make sure you install everything right and fix the patch error you see for mesa libdrm"
   rm -rf 64-bit
 else
   exit 1
 fi
 
-echo "Please run bulid_mesa_new_config32.sh on a 32bit debian distro in a vm"
+printf "Please run bulid_mesa_new_config32.sh on a 32bit debian distro in a vm"
 
-echo "Script By TigerClips1"
+printf "Script By TigerClips1"
 
-echo "ps4linux.com"
+printf "ps4linux.com"
 
 exit
